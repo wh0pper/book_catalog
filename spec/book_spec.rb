@@ -51,6 +51,16 @@ describe('Book') do
     end
   end
 end
+
+describe('Patron') do
+  describe('#save and #self.read_all') do
+    it('saves new patron into patrons table') do
+      patron = Patron.new({:name => 'John Smith'})
+      patron.save
+      expect(Patron.read_all).to(eq([patron]))
+    end
+  end
+end
 #   describe('#save') do
 #     it('saves current doctor instance to database') do
 #       doctor = Doctor.new({:name =>'doc', :specialty => 'ology'})

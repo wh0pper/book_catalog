@@ -28,8 +28,8 @@ class Book
     return books
   end
 
-  def self.search_by(category, value)
-    results = DB.exec("SELECT * FROM books WHERE #{category}='#{value}';")
+  def self.search_by(column, value)
+    results = DB.exec("SELECT * FROM books WHERE #{column}='#{value}';")
     books = []
     results.each do |result|
       books.push(Book.new({:title => result['title'], :author => result['author'], :genre => result['genre'], :id => result['id']}))
