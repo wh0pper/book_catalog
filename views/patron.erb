@@ -1,0 +1,16 @@
+<h3>Patient:</h3>
+
+<h4><%= @this_patient.name %></h4>
+
+<h3>Current doctor:</h3>
+<%= @doc_name %>
+
+<h3>Assign Doctor:</h3>
+<form class="form-group" action="/patients/<%= @this_patient.id %>/assign" method="post">
+  <select name="doclist" placeholder= "DOCTOR">
+    <% @doctors.each do |doctor| %>
+      <option value="<%= doctor['id'] %>"><%= doctor['name'] %></option>
+    <% end %>
+  </select>
+  <button type="submit" name="submit" class="btn btn-warning">Assign</button>
+</form>
