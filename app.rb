@@ -27,8 +27,14 @@ end
 
 get('/librarian/book/:id') do
   book_id = params[:id]
-  @this_book = Book.search_by('id',book_id)
-  binding.pry
+  @this_book = Book.search_by('id',book_id)[0]
+  erb(:book)
+end
+
+delete('/librarian/book/:id') do
+  book_id = params[:id]
+  this_book = Book.search_by('id',book_id)[0]
+  this_book.delete
   erb(:book)
 end
 

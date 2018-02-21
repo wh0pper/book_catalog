@@ -1,4 +1,20 @@
 <h1>Book:</h1>
+<hr>
+<% if @this_book %>
 <h4><%= @this_book.title %></h4>
 <h4><%= @this_book.author %></h4>
 <h4><%= @this_book.genre %></h4>
+<br>
+<form action="/librarian/book/<%= @this_book.id %>" method="post">
+    <input name="_method" type="hidden" value="patch">
+    <button type="submit" class="btn btn-warning">Update book record</button>
+</form><br>
+
+<form action="/librarian/book/<%= @this_book.id %>" method="post">
+    <input name="_method" type="hidden" value="delete">
+    <button type="submit" class="btn btn-danger">Delete book record</button>
+</form>
+
+<% else %>
+<h3>Record deleted.</h3>
+<% end %>

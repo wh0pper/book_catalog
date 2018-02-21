@@ -19,6 +19,10 @@ class Book
     @id = DB.exec("SELECT id FROM books WHERE title='#{@title}' AND author='#{@author}';")[0]['id']
   end
 
+  def delete
+    DB.exec("DELETE FROM books WHERE id = #{@id};")
+  end
+
   def self.read_all
     results = DB.exec("SELECT * FROM books;")
     books = []
