@@ -23,7 +23,7 @@
 
 ##### Custom ruby classes      
   3. Book
-      * initialize, save to DB, update in DB,
+      * initialize, save to DB, update in DB, checkout, search
   4. Search doctors table by specialty and return list of all ( list(specialty) )
   5. List all patients, and doctors ( .read_all() )
   6. List all patients of one doctor ( .patients )

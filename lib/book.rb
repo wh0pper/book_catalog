@@ -8,16 +8,27 @@ class Book
     @title = attributes[:title]
     @author = attributes[:author]
     @genre = attributes[:genre]
+    @id = attributes[:id]
   end
 
   def save
-    if DB.exec("SELECT EXISTS(SELECT * FROM books WHERE title='#{@title}' AND author='#{@author}');")
+    if (DB.exec("SELECT EXISTS(SELECT * FROM books WHERE title='#{@title}' AND author='#{@author}');")[0]['exists'])=='t'
       DB.exec("UPDATE books SET inventory=inventory+1 WHERE title='#{@title}' AND author='#{@author}';")
     else
       DB.exec("INSERT INTO books (title, author, genre, inventory) VALUES ('#{@title}', '#{@author}', '#{@genre}', 1)")
     end
+    @id = DB.exec("SELECT id FROM books WHERE title='#{@title}' AND author='#{@author}';")[0]['id']
   end
 
+  def self.read_all
+    results = DB.exec("SELECT * FROM books;")
+    books = []
+    results.each do |result|
+      books.push(Book.new({:title => result['title'], :author => result['author'], :genre => result['genre'], :id => result['id']}))
+    end
+    return books
+  end
+end
 #   def save
 #     if !(DB.exec("SELECT * FROM books WHERE title='#{@title}';").column_values(1).include?(@name))
 #       DB.exec("INSERT INTO doctors (name, specialty) VALUES ('#{@name}', '#{@specialty}');")
