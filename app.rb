@@ -27,14 +27,22 @@ end
 
 get('/librarian/book/:id') do
   book_id = params[:id]
-  @this_book = Book.search_by('id',book_id)[0]
+  @this_book = Book.search_by('id',book_id)
   erb(:book)
 end
 
 delete('/librarian/book/:id') do
   book_id = params[:id]
-  this_book = Book.search_by('id',book_id)[0]
+  this_book = Book.search_by('id',book_id)
   this_book.delete
+  erb(:book)
+end
+
+patch('/librarian/book/:id') do
+  book_id = params[:id]
+  updates = "title = '#{params[:title]}', author = '#{params[:author]}', genre = '#{params[:genre]}'"
+  this_book = Book.search_by('id',book_id)
+  @this_book = this_book.update(updates)
   erb(:book)
 end
 

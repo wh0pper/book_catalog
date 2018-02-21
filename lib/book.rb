@@ -19,6 +19,11 @@ class Book
     @id = DB.exec("SELECT id FROM books WHERE title='#{@title}' AND author='#{@author}';")[0]['id']
   end
 
+  def update(updates)
+    DB.exec("UPDATE books SET #{updates} WHERE id = #{@id};")
+    Book.search_by('id', @id)
+  end
+
   def delete
     DB.exec("DELETE FROM books WHERE id = #{@id};")
   end
@@ -38,7 +43,11 @@ class Book
     results.each do |result|
       books.push(Book.new({:title => result['title'], :author => result['author'], :genre => result['genre'], :id => result['id']}))
     end
-    return books
+    if books.length > 1
+      return books
+    else
+      return books[0]
+    end
   end
 
   def ==(other_book)

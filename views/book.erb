@@ -7,6 +7,12 @@
 <br>
 <form action="/librarian/book/<%= @this_book.id %>" method="post">
     <input name="_method" type="hidden" value="patch">
+    <label>Update title:</label>
+    <input name="title" class="form-control" type="text" value="<%= @this_book.title %>"><br>
+    <label>Update author:</label>
+    <input name="author" class="form-control" type="text" value="<%= @this_book.author %>"><br>
+    <label>Update genre:</label>
+    <input name="genre" class="form-control" type="text" value="<%= @this_book.genre %>"><br>
     <button type="submit" class="btn btn-warning">Update book record</button>
 </form><br>
 

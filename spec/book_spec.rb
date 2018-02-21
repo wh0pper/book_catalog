@@ -50,6 +50,14 @@ describe('Book') do
       expect(list).to(eq([book1, book2]))
     end
   end
+
+  describe('#delete') do
+
+  end
+
+  describe('#update') do
+    
+  end
 end
 
 describe('Patron') do
