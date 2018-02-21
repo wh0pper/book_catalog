@@ -16,8 +16,6 @@ end
 
 test_attr = {:title => 'Brave New World', :author => 'Aldous Huxley', :genre => 'science fiction'}
 
-
-
 describe('Book') do
   describe('#save and #self.read_all') do
     it('creates new book instance') do
@@ -39,6 +37,17 @@ describe('Book') do
       book1.save
       book2.save
       expect(DB.exec("SELECT inventory FROM books WHERE title='Brave New World'")[0]['inventory']).to(eq('2'))
+    end
+  end
+
+  describe('#self.search_by') do
+    it('returns all books matching certain column value') do
+      book1 = Book.new(test_attr)
+      book2 = Book.new({:title => 'Crome Yellow', :author => 'Aldous Huxley', :genre => 'historical fiction'})
+      book1.save
+      book2.save
+      list = Book.search_by('author', 'Aldous Huxley')
+      expect(list).to(eq([book1, book2]))
     end
   end
 end

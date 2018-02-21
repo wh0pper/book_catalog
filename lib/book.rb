@@ -28,6 +28,15 @@ class Book
     return books
   end
 
+  def self.search_by(category, value)
+    results = DB.exec("SELECT * FROM books WHERE #{category}='#{value}';")
+    books = []
+    results.each do |result|
+      books.push(Book.new({:title => result['title'], :author => result['author'], :genre => result['genre'], :id => result['id']}))
+    end
+    return books
+  end
+
   def ==(other_book)
     same_title = @title.eql?(other_book.title)
     same_author = @author.eql?(other_book.author)
