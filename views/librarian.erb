@@ -1,36 +1,12 @@
-<div class="jumbotron">
-    <h1>Administrator</h1>
-</div>
+
 <br>
 <div class="well">
-  <h2>Add doctor</h2>
-  <form class="form-group" action="/administrators" method="post">
-    <input name="name_doc" class="form-control" type="text" placeholder= "DOCTOR"><br>
-    <input name="specialty" class="form-control" type="text" placeholder= "SPECIALTY"><br>
-    <button type="submit" name="submit" class="btn btn-warning">ADD DOCTOR</button>
+  <h2>Add a new book:</h2>
+  <form class="form-group" action="/librarian" method="post">
+    <input name="title" class="form-control" type="text" placeholder="Title"><br>
+    <input name="author" class="form-control" type="text" placeholder="Author"><br>
+    <input name="genre" class="form-control" type="text" placeholder="Genre"><br>
+    <button type="submit" class="btn btn-warning">Submit</button>
   </form>
 </div>
 <br>
-<div class="well">
-  <h2>Add patient</h2>
-  <form class="form-group" action="/administrators" method="post">
-    <input name="name_patient" class="form-control" type="text" placeholder= "PATIENT NAME"><br>
-    <input name="dob" class="form-control" type="date"><br>
-    <input name="need" class="form-control" type="text" placeholder="NEED"><br>
-    <button type="submit" name="submit" class="btn btn-warning">ADD PT.</button>
-  </form>
-</div>
-<br>
-<div class="well">
-  <h2>DOCTORS:</h2>
-  <% @doctors.each do |doctor| %>
-    <%= doctor['name'] %>: <%= doctor['specialty'] %><br>
-  <% end %>
-  <hr>
-
-  <h2>PATIENTS:</h2>
-  <% @patients.each do |patient| %>
-    <a href="/patients/<%= patient['id'] %>"><%= patient['name'] %></a>: <%= patient['birthday'] %><br>
-  <% end %>
-
-</div>
