@@ -1,8 +1,7 @@
 require("pry")
 
 class Book
-  attr_reader :id
-  attr_accessor :name, :specialty
+  attr_reader :id, :title, :author, :genre
 
   def initialize(attributes)
     @title = attributes[:title]
@@ -27,6 +26,12 @@ class Book
       books.push(Book.new({:title => result['title'], :author => result['author'], :genre => result['genre'], :id => result['id']}))
     end
     return books
+  end
+
+  def ==(other_book)
+    same_title = @title.eql?(other_book.title)
+    same_author = @author.eql?(other_book.author)
+    same_title.&(same_author)
   end
 end
 #   def save
@@ -61,9 +66,5 @@ end
 #     return patients
 #   end
 #
-#   def ==(other_doctor)
-#     same_name = self.name.eql?(other_doctor.name)
-#     same_specialty = self.specialty.eql?(other_doctor.specialty)
-#     same_name.&(same_specialty)
-#   end
+
 # end
