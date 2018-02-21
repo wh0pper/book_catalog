@@ -1,22 +1,29 @@
-# Doctor
+# Library Catalog
 
-## February 20, 2018
+## February 21, 2018
 
 #### Sinatra, PostgreSQL App
 
-#### By Jared Clemmensen, John Rykken
+#### By Jared Clemmensen
 
 ## Description
-  A CRUD application for a faux hospital allowing administrators, doctors, and patients to view and input information.
+  A CRUD application...
 
 ## Specs
 
 #### Backend
-  1. Create new doctor (initialize(name, specialty))
-      * Save to database
-  2. Create new patient (initialize(name, DOB, health concern))
-      * Save to database
-  3. Assign patient to doctor ( assign_dr(doctorID)
+##### Database
+  1. Table for books
+      * Keeps track of book info and checkout status, inventory
+  2. Table for library patrons
+      * Keeps track of patron info and checkout history + due dates
+  3. Junction table for patrons to books relationship    
+  4. (additional) Table for authors
+      * Keeps track of patron info and checkout history + due dates
+
+##### Custom ruby classes      
+  3. Book
+      * initialize, save to DB, update in DB,
   4. Search doctors table by specialty and return list of all ( list(specialty) )
   5. List all patients, and doctors ( .read_all() )
   6. List all patients of one doctor ( .patients )
