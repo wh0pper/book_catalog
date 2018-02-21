@@ -32,6 +32,14 @@ describe('Book') do
       book.save
       expect(DB.exec("SELECT id FROM books WHERE title='Brave New World'")[0]['id']).to(eq(book.id))
     end
+
+    it('increases DB inventory when adding existing books') do
+      book1 = Book.new(test_attr)
+      book2 = Book.new(test_attr)
+      book1.save
+      book2.save
+      expect(DB.exec("SELECT inventory FROM books WHERE title='Brave New World'")[0]['inventory']).to(eq('2'))
+    end
   end
 end
 #   describe('#save') do
