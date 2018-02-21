@@ -25,10 +25,12 @@ post('/librarian') do
   erb(:librarian)
 end
 
-# get('/librarian/book/:id') do
-#
-#   erb(:book)
-# end
+get('/librarian/book/:id') do
+  book_id = params[:id]
+  @this_book = Book.search_by('id',book_id)
+  binding.pry
+  erb(:book)
+end
 
 post('/patron') do
 

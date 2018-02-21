@@ -13,7 +13,7 @@
 
 
   <h2>Catalog:</h2>
-  <p>Click a book to edit record.</p>
+  <p>Click a book's title to edit record.</p>
   <table>
     <tr>
       <th>Title</th>
@@ -21,12 +21,12 @@
       <th>Genre</th>
     </tr>
       <% @book_list.each do |book| %>
-        <a href="/librarian/book/<%= book.id %>">
+
         <tr>
-          <td><%= book.title %></td>
+          <td><a href="/librarian/book/<%= book.id %>"><%= book.title %></a></td>
           <td><%= book.author %></td>
           <td><%= book.genre %></td>
         </tr>
-        </a>
+
       <% end %>
   </table>
