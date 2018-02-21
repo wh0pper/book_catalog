@@ -22,10 +22,15 @@ describe('Book') do
   describe('#save and #self.read_all') do
     it('creates new book instance') do
       book = Book.new(test_attr)
-      # binding.pry
       book.save
       list = Book.read_all
       expect(list).to(eq([book]))
+    end
+
+    it('generates DB id for book and saves this value within instance') do
+      book = Book.new(test_attr)
+      book.save
+      expect(DB.exec("SELECT id FROM books WHERE title='Brave New World'")[0]['id']).to(eq(book.id))
     end
   end
 end
