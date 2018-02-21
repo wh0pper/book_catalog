@@ -14,10 +14,24 @@ get('/') do
 end
 
 get('/librarian') do
+  @book_list = Book.read_all
   erb(:librarian)
 end
 
+post('/librarian') do
+  new_book = Book.new({:title => params[:title], :author => params[:author], :genre => params[:genre]})
+  new_book.save
+  @book_list = Book.read_all
+  erb(:librarian)
+end
+
+# get('/librarian/book/:id') do
+#
+#   erb(:book)
+# end
+
 post('/patron') do
+
   erb(:patron)
 end
 

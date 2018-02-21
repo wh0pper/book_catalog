@@ -10,3 +10,23 @@
   </form>
 </div>
 <br>
+
+
+  <h2>Catalog:</h2>
+  <p>Click a book to edit record.</p>
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Genre</th>
+    </tr>
+      <% @book_list.each do |book| %>
+        <a href="/librarian/book/<%= book.id %>">
+        <tr>
+          <td><%= book.title %></td>
+          <td><%= book.author %></td>
+          <td><%= book.genre %></td>
+        </tr>
+        </a>
+      <% end %>
+  </table>
