@@ -1,3 +1,5 @@
+require 'book'
+
 class Patron
   attr_reader :name, :id
 
@@ -20,6 +22,11 @@ class Patron
     return patrons
   end
 
+  def all_checkouts
+    results = DB.exec("SELECT books.title, checkouts.patron_id FROM checkouts JOIN books ON checkouts.book_id = books.id WHERE checkouts.patron_id = #{@id};")
+    #parse results
+    return results
+  end
 
   def ==(other_patron)
     same_name = @name.eql?(other_patron.name)

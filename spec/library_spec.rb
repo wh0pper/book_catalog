@@ -91,5 +91,9 @@ describe('Patron') do
     end
   end
 
-
+  describe('#all_checkouts') do
+    it('returns list of all currently checked out books') do
+      #finish test
+    end
+  end
 end
