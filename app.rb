@@ -1,4 +1,4 @@
-#!/home/linuxbrew/.linuxbrew/bin/env ruby
+#!/usr/bin/env ruby
 require 'sinatra'
 require 'sinatra/reloader'
 require 'pry'

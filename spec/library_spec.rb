@@ -93,7 +93,15 @@ describe('Patron') do
 
   describe('#all_checkouts') do
     it('returns list of all currently checked out books') do
-      #finish test
+      patron = Patron.new({:name => 'John Smith'})
+      patron.save
+      book1 = Book.new(test_attr)
+      book1.save
+      book2 = Book.new({:title => 'Crome Yellow', :author => 'Aldous Huxley', :genre => 'historical fiction'})
+      book2.save
+      book1.checkout(patron.id)
+      book2.checkout(patron.id)
+      expect(patron.all_checkouts).to(eq([book1,book2]))  
     end
   end
 end

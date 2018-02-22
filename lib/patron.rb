@@ -1,4 +1,5 @@
-require 'book'
+#!/usr/bin/env ruby
+require './lib/book'
 
 class Patron
   attr_reader :name, :id
@@ -23,9 +24,15 @@ class Patron
   end
 
   def all_checkouts
-    results = DB.exec("SELECT books.title, checkouts.patron_id FROM checkouts JOIN books ON checkouts.book_id = books.id WHERE checkouts.patron_id = #{@id};")
-    #parse results
-    return results
+    results = DB.exec("SELECT books.*, checkouts.patron_id FROM checkouts JOIN books ON checkouts.book_id = books.id WHERE checkouts.patron_id = #{@id};")
+    checkouts = []
+    results.each do |book|
+      title = book.fetch('title')
+      author = book.fetch('author')
+      id = book.fetch('id').to_i
+      checkouts.push(Book.new({:title => title, :author => author, :id => id}))
+    end
+    return checkouts
   end
 
   def ==(other_patron)
