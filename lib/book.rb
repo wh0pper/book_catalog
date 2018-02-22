@@ -50,7 +50,8 @@ class Book
   end
 
   def self.checkout(patron_id, book_id)
-    DB.exec("INSERT INTO checkouts (patron_id, book_id) VALUES (#{patron_id}, #{book_id});")
+    due = (Date.today + 14).to_s #due in 14 days
+    DB.exec("INSERT INTO checkouts (patron_id, book_id, due) VALUES (#{patron_id}, #{book_id}, #{due});")
   end
 
   def ==(other_book)

@@ -23,6 +23,8 @@
     <h3>Check a book out:</h3>
     <form class="form-group" action="/patron" method="post">
       <input name="_method" type="hidden" value="patch">
+      <input name="id" type="hidden" value="<%= @patron_id %>">
+      <input name="name" type="hidden" value="<%= @patron_name %>">
       <input name="title" class="form-control" type="text" placeholder="Title"><br>
       <input name="author" class="form-control" type="text" placeholder="Author"><br>
       <button type="submit" class="btn btn-warning">Checkout</button>
