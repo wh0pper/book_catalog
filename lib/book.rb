@@ -1,13 +1,14 @@
 require("pry")
 
 class Book
-  attr_reader :id, :title, :author, :genre
+  attr_reader :id, :title, :author, :genre, :inventory
 
   def initialize(attributes)
     @title = attributes[:title]
     @author = attributes[:author]
     @genre = attributes[:genre]
     @id = attributes[:id]
+    @inventory = 1
   end
 
   def save
@@ -17,6 +18,7 @@ class Book
       DB.exec("INSERT INTO books (title, author, genre, inventory) VALUES ('#{@title}', '#{@author}', '#{@genre}', 1)")
     end
     @id = DB.exec("SELECT id FROM books WHERE title='#{@title}' AND author='#{@author}';")[0]['id']
+    @inventory = DB.exec("SELECT inventory FROM books WHERE id='#{@id}';")[0]['iventory']
   end
 
   def update(updates)

@@ -19,6 +19,7 @@
       <th>Title</th>
       <th>Author</th>
       <th>Genre</th>
+      <th>Copies available:</th>
     </tr>
       <% @book_list.each do |book| %>
 
@@ -26,6 +27,7 @@
           <td><a href="/librarian/book/<%= book.id %>"><%= book.title %></a></td>
           <td><%= book.author %></td>
           <td><%= book.genre %></td>
+          <td><%= book.inventory %></td>
         </tr>
 
       <% end %>
