@@ -49,8 +49,8 @@ class Book
     return books
   end
 
-  def checkout(patron_id)
-    DB.exec("INSERT INTO checkouts (patron_id, book_id) VALUES (#{patron_id}, #{@id});")
+  def self.checkout(patron_id, book_id)
+    DB.exec("INSERT INTO checkouts (patron_id, book_id) VALUES (#{patron_id}, #{book_id});")
   end
 
   def ==(other_book)

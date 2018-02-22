@@ -76,7 +76,7 @@ describe('Book') do
       book1.save
       patron = Patron.new({:name => 'test patron'})
       patron.save
-      book1.checkout(patron.id)
+      Book.checkout(patron.id, book1.id)
       expect(DB.exec("SELECT * FROM checkouts;")[0]).to(eq({'patron_id' => patron.id, 'book_id' => book1.id}))
     end
   end
@@ -99,9 +99,9 @@ describe('Patron') do
       book1.save
       book2 = Book.new({:title => 'Crome Yellow', :author => 'Aldous Huxley', :genre => 'historical fiction'})
       book2.save
-      book1.checkout(patron.id)
-      book2.checkout(patron.id)
-      expect(patron.all_checkouts).to(eq([book1,book2]))  
+      Book.checkout(patron.id, book1.id)
+      Book.checkout(patron.id, book2.id)
+      expect(patron.all_checkouts).to(eq([book1,book2]))
     end
   end
 end

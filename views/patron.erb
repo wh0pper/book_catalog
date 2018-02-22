@@ -1,9 +1,48 @@
 <br>
+
 <div class="well">
-  <h3>Check a book out:</h3>
+  <% if @patron_name %>
+    <h3>Find another account:</h3>
+  <% else %>
+    <h3>Enter your name to view existing account information:</h3>
+  <% end %>
   <form class="form-group" action="/patron" method="post">
-    <input name="title" class="form-control" type="text" placeholder="Title"><br>
-    <input name="author" class="form-control" type="text" placeholder="Author"><br>
-    <button type="submit" class="btn btn-warning">Checkout</button>
+    <input type="text" name="patron_name" class="form-control" placeholder="Name">
+    <button type="submit" class="btn btn-info">Find</button>
   </form>
 </div>
+
+<% if @patron_name %>
+  <div class="well">
+    <h3>Your info:</h3>
+    Name: <%= @patron_name %>, id: <%= @patron_id %>
+  </div>
+
+
+  <div class="well">
+    <h3>Check a book out:</h3>
+    <form class="form-group" action="/patron" method="post">
+      <input name="_method" type="hidden" value="patch">
+      <input name="title" class="form-control" type="text" placeholder="Title"><br>
+      <input name="author" class="form-control" type="text" placeholder="Author"><br>
+      <button type="submit" class="btn btn-warning">Checkout</button>
+    </form>
+  </div>
+
+  <div class="well">
+    <h3>Current checkouts:</h3>
+    <table>
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+      </tr>
+      <% @checkouts_list.each do |book| %>
+        <tr>
+          <td><%= book.title %></td>
+          <td><%= book.author %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+
+<% end %>

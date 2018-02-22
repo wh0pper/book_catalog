@@ -54,9 +54,21 @@ post('/librarian/search') do
 end
 
 get('/patron') do
-
   erb(:patron)
 end
+
+post('/patron') do
+  @patron_name = params[:patron_name]
+  @patron_id = Patron.get_id(@patron_name)
+  patron = Patron.new({:name => @patron_name, :id => @patron_id})
+  @checkouts_list = patron.all_checkouts
+  erb(:patron)
+end
+
+patch('/patron') do
+  erb(:patron)
+end
+
 
 # get('/doctors') do
 #   erb(:doctors)

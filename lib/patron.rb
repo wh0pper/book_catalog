@@ -14,6 +14,10 @@ class Patron
     @id = DB.exec("SELECT id FROM patrons WHERE name = '#{@name}';")[0]['id']
   end
 
+  def self.get_id(name)
+    DB.exec("SELECT id FROM patrons WHERE name = '#{name}'").first.fetch('id').to_i
+  end
+
   def self.read_all
     results = DB.exec("SELECT * FROM patrons;")
     patrons = []
