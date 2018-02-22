@@ -62,7 +62,12 @@ describe('Book') do
   end
 
   describe('#update') do
-
+    it('updates book in database and returns updated book object') do
+      book1 = Book.new(test_attr)
+      book1.save
+      updated_book = book1.update("title = 'The Doors of Perception'")
+      expect(Book.search_by('title', 'The Doors of Perception')).to(eq(updated_book))
+    end
   end
 end
 
