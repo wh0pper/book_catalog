@@ -56,37 +56,3 @@ class Book
     same_title.&(same_author)
   end
 end
-#   def save
-#     if !(DB.exec("SELECT * FROM books WHERE title='#{@title}';").column_values(1).include?(@name))
-#       DB.exec("INSERT INTO doctors (name, specialty) VALUES ('#{@name}', '#{@specialty}');")
-#     end
-#   end
-#
-#   def self.read_all
-#     result = DB.exec("SELECT * FROM doctors;")
-#     doctors = []
-#     result.each do |doctor|
-#       doctors.push(doctor)
-#     end
-#     return doctors
-#   end
-#
-#   def get_id
-#     @id = DB.exec("SELECT id FROM doctors WHERE name='#{@name}';")[0]['id'].to_i
-#   end
-#
-#   def self.get_name(id)
-#     DB.exec("SELECT name FROM doctors WHERE id='#{id}';")[0]['name']
-#   end
-#
-#   def self.get_patients(id)
-#     result = DB.exec("SELECT * FROM patients WHERE doctorid='#{id}';")
-#     patients = []
-#     result.each do |patient|
-#       patients.push(patient)
-#     end
-#     return patients
-#   end
-#
-
-# end
