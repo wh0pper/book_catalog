@@ -20,6 +20,7 @@ class Patron
     return patrons
   end
 
+
   def ==(other_patron)
     same_name = @name.eql?(other_patron.name)
     same_id = @id.eql?(other_patron.id)

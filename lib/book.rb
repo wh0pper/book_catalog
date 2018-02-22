@@ -45,11 +45,11 @@ class Book
     results.each do |result|
       books.push(Book.new({:title => result['title'], :author => result['author'], :genre => result['genre'], :id => result['id']}))
     end
-    if books.length > 1
-      return books
-    else
-      return books[0]
-    end
+    return books
+  end
+
+  def checkout(patron_id)
+    DB.exec("INSERT INTO checkouts (patron_id, book_id) VALUES (#{patron_id}, #{@id});")
   end
 
   def ==(other_book)

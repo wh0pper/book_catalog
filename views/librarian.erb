@@ -1,7 +1,7 @@
 
 <br>
 <div class="well">
-  <h2>Add a new book:</h2>
+  <h3>Add a new book:</h3>
   <form class="form-group" action="/librarian" method="post">
     <input name="title" class="form-control" type="text" placeholder="Title"><br>
     <input name="author" class="form-control" type="text" placeholder="Author"><br>
@@ -10,6 +10,20 @@
   </form>
 </div>
 <br>
+<div class="well">
+  <h3>Search for book(s):</h3>
+  <form class="form-group" action="/librarian/search" method="post">
+    <label for="search_field">Search by:</label>
+    <select id="search_field" name="search_field" type="text" class="form-control">
+      <option value="title">Title</option>
+      <option value="author">Author</option>
+      <option value="genre">Genre</option>
+    </select><br>
+    <label>Search for:</label>
+    <input name="search_value" class="form-control" type="text" placeholder="Search"><br>
+    <button type="submit" class="btn btn-warning">Search</button>
+  </form>
+</div>
 
 
   <h2>Catalog:</h2>

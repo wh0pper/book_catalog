@@ -8,9 +8,9 @@ DB = PG.connect({:dbname => 'library_test'})
 
 RSpec.configure do |config|
   config.after(:each) do
+    DB.exec("DELETE FROM checkouts *;")
     DB.exec("DELETE FROM books *;")
     DB.exec("DELETE FROM patrons *;")
-    DB.exec("DELETE FROM checkouts *;")
   end
 end
 
@@ -69,6 +69,17 @@ describe('Book') do
       expect(Book.search_by('title', 'The Doors of Perception')).to(eq(updated_book))
     end
   end
+
+  describe('#checkout') do
+    it('checks out a book by adding it to checkouts table and decreasing its inventory') do
+      book1 = Book.new(test_attr)
+      book1.save
+      patron = Patron.new({:name => 'test patron'})
+      patron.save
+      book1.checkout(patron.id)
+      expect(DB.exec("SELECT * FROM checkouts;")[0]).to(eq({'patron_id' => patron.id, 'book_id' => book1.id}))
+    end
+  end
 end
 
 describe('Patron') do
@@ -79,4 +90,6 @@ describe('Patron') do
       expect(Patron.read_all).to(eq([patron]))
     end
   end
+
+
 end

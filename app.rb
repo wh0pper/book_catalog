@@ -27,13 +27,13 @@ end
 
 get('/librarian/book/:id') do
   book_id = params[:id]
-  @this_book = Book.search_by('id',book_id)
+  @this_book = Book.search_by('id',book_id)[0]
   erb(:book)
 end
 
 delete('/librarian/book/:id') do
   book_id = params[:id]
-  this_book = Book.search_by('id',book_id)
+  this_book = Book.search_by('id',book_id)[0]
   this_book.delete
   erb(:book)
 end
@@ -41,12 +41,19 @@ end
 patch('/librarian/book/:id') do
   book_id = params[:id]
   updates = "title = '#{params[:title]}', author = '#{params[:author]}', genre = '#{params[:genre]}'"
-  this_book = Book.search_by('id',book_id)
+  this_book = Book.search_by('id',book_id)[0]
   @this_book = this_book.update(updates)
   erb(:book)
 end
 
-post('/patron') do
+post('/librarian/search') do
+  column = params[:search_field]
+  value = params[:search_value]
+  @search_list = Book.search_by(column, value)
+  erb(:search)
+end
+
+get('/patron') do
 
   erb(:patron)
 end
