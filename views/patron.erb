@@ -37,11 +37,13 @@
       <tr>
         <th>Title</th>
         <th>Author</th>
+        <!-- <th>Due date:</th> -->
       </tr>
       <% @checkouts_list.each do |book| %>
         <tr>
           <td><%= book.title %></td>
           <td><%= book.author %></td>
+        
         </tr>
       <% end %>
     </table>

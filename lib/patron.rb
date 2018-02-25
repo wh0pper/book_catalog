@@ -34,6 +34,7 @@ class Patron
       title = book.fetch('title')
       author = book.fetch('author')
       id = book.fetch('id').to_i
+
       checkouts.push(Book.new({:title => title, :author => author, :id => id}))
     end
     return checkouts

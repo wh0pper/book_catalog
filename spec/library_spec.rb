@@ -77,7 +77,8 @@ describe('Book') do
       patron = Patron.new({:name => 'test patron'})
       patron.save
       Book.checkout(patron.id, book1.id)
-      expect(DB.exec("SELECT * FROM checkouts;")[0]).to(eq({'patron_id' => patron.id, 'book_id' => book1.id}))
+      due_date = (Date.today+14).to_s
+      expect(DB.exec("SELECT * FROM checkouts;")[0]).to(eq({'patron_id' => patron.id, 'book_id' => book1.id, 'due' => due_date}))
     end
   end
 end

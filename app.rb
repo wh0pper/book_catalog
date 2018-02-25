@@ -71,6 +71,7 @@ patch('/patron') do #book checkout
   patron = Patron.new({:name => @patron_name, :id => @patron_id})
   checkout_title = params[:title]
   checkout_author = params[:author]
+  binding.pry
   book_id = Book.search_by('title', checkout_title)[0].id.to_i
   Book.checkout(@patron_id, book_id)
   @checkouts_list = patron.all_checkouts
